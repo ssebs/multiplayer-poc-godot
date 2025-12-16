@@ -21,10 +21,14 @@ func _apply_movement_from_input(_delta):
 
 # Server must call this from input_synchronizer
 @rpc("call_local")
-func shoot_bullet():
+func shoot_bullet(mouse_position: Vector2):
     var bullet = bullet_scn.instantiate() as RigidBody2D
-    bullet.position = %BulletSpawnPos.position
-    add_child(bullet)
+    # bullet.global_position = %BulletSpawnPos.global_position
+    %BulletSpawnPos.add_child(bullet)
+
+    # Calculate direction from character position to mouse position
+    var direction = (mouse_position - global_position).normalized()
+    bullet.shoot_bullet(direction)
 
 # Server must call this from input_synchronizer
 @rpc("call_local")
