@@ -2,16 +2,10 @@
 
 ## In Progress
 
-- Aim bullet & shoot along vector
-  - defaultExpanded: false
-    ```md
-    from char pos => mouse pos
-    ```
-
-## Up Next
-
 - Create lobby / connection system
   - defaultExpanded: false
+
+## Up Next
 
 - Improve text chat
   - defaultExpanded: false
@@ -29,6 +23,12 @@
   - defaultExpanded: false
 
 ## Done
+
+- Aim bullet & shoot along vector
+  - defaultExpanded: false
+    ```md
+    from char pos => mouse pos
+    ```
 
 - Add broadcast msg (starting round in...)
   - defaultExpanded: false
