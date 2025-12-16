@@ -1,4 +1,4 @@
-extends Control
+class_name TextChatUI extends Control
 
 @onready var text_chat_container: VBoxContainer = %TextChatContainer
 @onready var text_entry: LineEdit = %Entry

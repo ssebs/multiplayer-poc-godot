@@ -1,42 +1,53 @@
-extends Node
+class_name MultiplayerManager extends Node
+
+signal player_added_to_lobby(id: int)
 
 const PORT: int = 42069
 
-var multiplayer_scene = preload("res://scenes/networked_player.tscn")
-var _players_spawn_node: Node2D
+@export var player_scene = preload("res://scenes/networked_player.tscn")
+@export var game_main: GameMain
+
+var players_spawn_node: Node2D
+var lobby_players: Array[int] = []
 
 func start_server():
     var peer = ENetMultiplayerPeer.new()
     peer.create_server(PORT)
     multiplayer.multiplayer_peer = peer
 
-    multiplayer.peer_connected.connect(_add_player_to_game)
+    multiplayer.peer_connected.connect(_on_peer_connected)
     multiplayer.peer_disconnected.connect(_rm_player)
 
-    _players_spawn_node = get_tree().current_scene.get_node("Players")
+    _on_peer_connected(1)
 
-    # Join as a client too
-    _add_player_to_game(1)
+func _on_peer_connected(id: int):
+    lobby_players.append(id)
+    player_added_to_lobby.emit(id)
 
-
-func start_client(ip_addr: String = "127.0.0.1"):
+func connect_client(ip_addr: String = "127.0.0.1"):
     var peer = ENetMultiplayerPeer.new()
     peer.create_client(ip_addr, PORT)
     multiplayer.multiplayer_peer = peer
-    
+
+func spawn_players():
+    if players_spawn_node == null:
+        printerr("players_spawn_node == null")
+        return
+
+    for p in lobby_players:
+        _add_player_to_game(p)
 
 func _add_player_to_game(id: int):
     print("New Player: %s" % id)
-    var player_to_add = multiplayer_scene.instantiate()
+    var player_to_add = player_scene.instantiate()
     player_to_add.name = str(id)
 
-    _players_spawn_node.add_child(player_to_add, true)
+    players_spawn_node.add_child(player_to_add, true)
     # TODO: add spawn offset
-
 
 func _rm_player(id: int):
     print("Deleting %s" % id)
 
-    if not _players_spawn_node.has_node(str(id)):
+    if not players_spawn_node.has_node(str(id)):
         return
-    _players_spawn_node.get_node(str(id)).queue_free()
+    players_spawn_node.get_node(str(id)).queue_free()

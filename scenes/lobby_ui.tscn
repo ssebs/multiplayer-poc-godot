@@ -1,0 +1,63 @@
+[gd_scene load_steps=3 format=3 uid="uid://gqo7n3lmq61v"]
+
+[ext_resource type="Script" uid="uid://bh8hge3lwweom" path="res://scripts/lobby_ui.gd" id="1_5rbtn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nt7q6"]
+bg_color = Color(0.13333334, 0.13333334, 0.13333334, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.1764706, 0.1764706, 0.1764706, 1)
+
+[node name="LobbyUI" type="VBoxContainer"]
+anchors_preset = -1
+anchor_left = 0.40234375
+anchor_top = 0.3111979
+anchor_right = 0.59765625
+anchor_bottom = 0.68880206
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_5rbtn")
+metadata/_edit_use_anchors_ = true
+
+[node name="IPEntry" type="LineEdit" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+text = "127.0.0.1"
+placeholder_text = "IP Address"
+
+[node name="Server" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Host Game"
+
+[node name="Client" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Join Game"
+
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(200, 150)
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_nt7q6")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 10
+
+[node name="LobbyList" type="VBoxContainer" parent="Panel/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Start" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Start Game"

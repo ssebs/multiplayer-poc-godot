@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://dr13ubq5426k5"]
+
+[node name="Level" type="Node2D"]
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("uid://hentk2g6xmci")
+spawn_path = NodePath("../Players")
+
+[node name="Players" type="Node2D" parent="."]
+position = Vector2(325, 257)
+
+[node name="Stuff" type="Node2D" parent="."]
+
+[node name="Label" type="Label" parent="Stuff"]
+offset_left = 850.0
+offset_top = 52.0
+offset_right = 968.0
+offset_bottom = 75.0
+text = "This is the level"
+
+[node name="ColorRect2" type="ColorRect" parent="Stuff"]
+offset_top = 727.0
+offset_right = 1038.0
+offset_bottom = 764.0
+color = Color(0.13333334, 0.13333334, 0.13333334, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="Stuff"]
+offset_left = 774.0
+offset_top = 620.0
+offset_right = 871.0
+offset_bottom = 728.0
+color = Color(0.13333334, 0.13333334, 0.13333334, 1)
+
+[node name="ColorRect5" type="ColorRect" parent="Stuff"]
+offset_left = 867.0
+offset_top = 518.0
+offset_right = 964.0
+offset_bottom = 626.0
+color = Color(0.13333334, 0.13333334, 0.13333334, 1)
+
+[node name="ColorRect6" type="ColorRect" parent="Stuff"]
+offset_left = 867.0
+offset_top = 518.0
+offset_right = 964.0
+offset_bottom = 730.0
+color = Color(0.13333334, 0.13333334, 0.13333334, 1)
+
+[node name="ColorRect7" type="ColorRect" parent="Stuff"]
+offset_left = 959.0
+offset_top = 418.0
+offset_right = 1056.0
+offset_bottom = 736.0
+color = Color(0.13333334, 0.13333334, 0.13333334, 1)
