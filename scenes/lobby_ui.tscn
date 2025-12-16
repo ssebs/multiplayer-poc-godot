@@ -50,6 +50,9 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
 [node name="LobbyList" type="VBoxContainer" parent="Panel/MarginContainer"]
 unique_name_in_owner = true

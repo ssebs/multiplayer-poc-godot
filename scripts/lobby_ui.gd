@@ -22,11 +22,9 @@ func _ready():
         _adjust_both_windows()
 
 func _on_server_pressed():
-    # multiplayer_manager.start_server()
     server_pressed.emit()
 
 func _on_client_pressed():
-    # multiplayer_manager.start_client(ip_entry.text)
     client_pressed.emit(ip_entry.text)
 
 func _on_start_pressed():
@@ -35,16 +33,18 @@ func _on_start_pressed():
 
 @rpc("call_local", "reliable")
 func set_lobby_players(player_names: Array[int]):
-    for player_name in player_names:
-        if lobby_list.get_node(str(player_name)) != null:
+    for player_id in player_names:
+        var player_name = str(player_id)
+        if lobby_list.has_node(player_name):
             continue
 
         var label = Label.new()
-        label.text = str(player_name)
+        label.name = player_name
+        label.text = player_name
         lobby_list.add_child(label, true)
 
 
-# Hack
+# Hack for debugging
 func _adjust_both_windows():
     var offset = 100
     randomize()
