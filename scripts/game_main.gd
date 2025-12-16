@@ -9,7 +9,8 @@ class_name GameMain extends Node
 var level: Node2D
 
 func _ready():
-    lobby_ui.server_pressed.connect(func(): 
+    # UI handlers
+    lobby_ui.server_pressed.connect(func():
         multiplayer_manager.start_server()
         lobby_ui.start_btn.show()
     )
@@ -17,15 +18,32 @@ func _ready():
         multiplayer_manager.connect_client(ip_addr)
     )
     # Only host can start game
-    lobby_ui.start_pressed.connect(func(): 
+    lobby_ui.start_pressed.connect(func():
         start_game.rpc()
     )
 
     # When player connects to lobby, server sends msg for all to update their list
-    multiplayer_manager.player_added_to_lobby.connect(func(_id: int, all_players: Array[int]):
+    multiplayer_manager.player_connected.connect(func(id: int, all_players: Array[int]):
         if multiplayer.is_server():
             lobby_ui.set_lobby_players.rpc(all_players)
+            
+        # Show connected msg
+        text_chat_ui.show_player_connected.rpc(id)
     )
+    # Show disconnected msg
+    multiplayer_manager.player_disconnected.connect(func(id: int):
+        text_chat_ui.show_player_disconnected.rpc(id)
+    )
+
+    # Reset stuff when the server disconnects you
+    multiplayer_manager.server_disconnected.connect(func():
+        if level != null:
+            level.queue_free()
+        lobby_ui.show()
+        lobby_ui.clear_lobby_players()
+        text_chat_ui.clear_chat()
+    )
+
 
 @rpc("call_local", "reliable")
 func start_game():

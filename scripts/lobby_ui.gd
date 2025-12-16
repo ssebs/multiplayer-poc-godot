@@ -43,6 +43,9 @@ func set_lobby_players(player_names: Array[int]):
         label.text = player_name
         lobby_list.add_child(label, true)
 
+func clear_lobby_players():
+    for child in lobby_list.get_children():
+        child.queue_free()
 
 # Hack for debugging
 func _adjust_both_windows():

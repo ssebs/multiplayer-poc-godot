@@ -12,9 +12,30 @@ func _ready():
 func on_submit(text: String):
     add_label_to_screen.rpc(text, multiplayer.get_unique_id())
 
+func clear_chat():
+    for child in text_chat_container.get_children():
+        child.queue_free()
+        text_entry.text = ""
+
 @rpc("any_peer", "call_local", "reliable")
 func add_label_to_screen(text: String, id: int):
     var new_label = Label.new()
     new_label.text = "@" + str(id) + " | " + text
     text_chat_container.add_child(new_label)
     text_entry.text = ""
+
+@rpc("call_local", "reliable")
+func show_player_connected(id: int):
+    var new_label = Label.new() as Label
+    new_label.text = "@" + str(id) + " connected!"
+    new_label.add_theme_color_override("font_color", Color.GREEN)
+    
+    text_chat_container.add_child(new_label)
+
+@rpc("call_local", "reliable")
+func show_player_disconnected(id: int):
+    var new_label = Label.new() as Label
+    new_label.text = "@" + str(id) + " disconnected!"
+    new_label.add_theme_color_override("font_color", Color.RED)
+    
+    text_chat_container.add_child(new_label)
