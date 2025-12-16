@@ -7,7 +7,7 @@
 radius = 15.0
 height = 42.0
 
-[node name="Bullet" type="RigidBody2D"]
+[node name="Bullet" type="Area2D"]
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_y25gk")

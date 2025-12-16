@@ -88,10 +88,6 @@ size_flags_horizontal = 4
 text = "REPLACE_ME"
 horizontal_alignment = 1
 
-[node name="BulletSpawnPos" type="Marker2D" parent="."]
-unique_name_in_owner = true
-position = Vector2(0, -80)
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
 libraries = {
