@@ -9,18 +9,23 @@ class_name GameMain extends Node
 var level: Node2D
 
 func _ready():
-    lobby_ui.server_pressed.connect(multiplayer_manager.start_server)
+    lobby_ui.server_pressed.connect(func(): 
+        multiplayer_manager.start_server()
+    )
     lobby_ui.client_pressed.connect(func(ip_addr: String):
         multiplayer_manager.connect_client(ip_addr)
     )
-    lobby_ui.start_pressed.connect(start_game)
-
-    multiplayer_manager.player_added_to_lobby.connect(func(id: int): 
-        lobby_ui.add_to_lobby(str(id))
-        lobby_ui.start_btn.show()
+    lobby_ui.start_pressed.connect(func(): 
+        start_game.rpc()
     )
 
+    multiplayer_manager.player_added_to_lobby.connect(func(_id: int, all_players: Array[int]):
+        lobby_ui.set_lobby_players.rpc(all_players)
+        if multiplayer.is_server():
+            lobby_ui.start_btn.show()
+    )
 
+@rpc("call_local", "reliable")
 func start_game():
     lobby_ui.hide()
 

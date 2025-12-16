@@ -15,7 +15,7 @@ properties/0/spawn = true
 properties/0/replication_mode = 1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g4e3d"]
-size = Vector2(128, 128)
+size = Vector2(66, 66)
 
 [sub_resource type="Animation" id="Animation_a5xx7"]
 length = 0.001
@@ -66,6 +66,7 @@ script = ExtResource("2_b60ip")
 player = NodePath("..")
 
 [node name="Icon" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_g4e3d")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -7,7 +7,7 @@ _spawnable_scenes = PackedStringArray("uid://hentk2g6xmci")
 spawn_path = NodePath("../Players")
 
 [node name="Players" type="Node2D" parent="."]
-position = Vector2(325, 257)
+position = Vector2(61, 282)
 
 [node name="Stuff" type="Node2D" parent="."]
 
@@ -19,6 +19,7 @@ offset_bottom = 75.0
 text = "This is the level"
 
 [node name="ColorRect2" type="ColorRect" parent="Stuff"]
+offset_left = 426.0
 offset_top = 727.0
 offset_right = 1038.0
 offset_bottom = 764.0

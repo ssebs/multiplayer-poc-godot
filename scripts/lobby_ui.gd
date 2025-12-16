@@ -33,10 +33,15 @@ func _on_start_pressed():
     start_pressed.emit()
 
 
-func add_to_lobby(player_name: String):
-    var label = Label.new()
-    label.text = player_name
-    lobby_list.add_child(label)
+@rpc("call_local", "reliable")
+func set_lobby_players(player_names: Array[int]):
+    for player_name in player_names:
+        if lobby_list.get_node(str(player_name)) != null:
+            continue
+
+        var label = Label.new()
+        label.text = str(player_name)
+        lobby_list.add_child(label, true)
 
 
 # Hack
