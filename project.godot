@@ -21,7 +21,8 @@ MultiplayerManager="*res://scripts/multiplayer_manager.gd"
 
 [display]
 
-window/size/viewport_width=1280
+window/size/viewport_width=1024
+window/size/viewport_height=768
 window/stretch/mode="canvas_items"
 
 [input]
