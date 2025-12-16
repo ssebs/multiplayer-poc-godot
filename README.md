@@ -14,7 +14,8 @@ Feel free to use this as a reference or starting point for your own Godot 4 mult
 See [TODO.md](./TODO.md) for progress.
 
 ## Builds
-- TBD
+- Download the latest build in [releases](https://github.com/ssebs/multiplayer-poc-godot/releases)
+  - NOTE: This may not be fully up-to-date, try using godot to compile the project yourself!
 
 ## License
 [AGPL](./LICENSE)
