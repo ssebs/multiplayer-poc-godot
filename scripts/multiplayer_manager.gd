@@ -68,7 +68,7 @@ func _spawn_player(id: int):
 func _spawn_enemy():
     print("Spawning enemy")
     const ENEMY_WIDTH = 68.0
-    var enemy_to_add = enemy_scene.instantiate() as CharacterBody2D
+    var enemy_to_add = enemy_scene.instantiate() as Enemy
     enemies_spawn_node.add_child(enemy_to_add, true)
     enemy_to_add.position.x -= enemies_spawn_node.get_child_count()  * (ENEMY_WIDTH + SPAWN_SPACING)
 

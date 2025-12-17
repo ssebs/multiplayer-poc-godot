@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://d2htt6qyxx32m"]
+[gd_scene load_steps=5 format=3 uid="uid://d2htt6qyxx32m"]
 
 [ext_resource type="Texture2D" uid="uid://cvr8c3uf1fb7r" path="res://assets/enemy.png" id="1_7p1mj"]
+[ext_resource type="Script" uid="uid://v0ekj0x0e8tw" path="res://scripts/enemy.gd" id="1_md0e3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_md0e3"]
 size = Vector2(68, 68)
@@ -10,9 +11,10 @@ properties/0/path = NodePath(".:position")
 properties/0/spawn = true
 properties/0/replication_mode = 1
 
-[node name="Enemy" type="CharacterBody2D" groups=["enemies"]]
+[node name="Enemy" type="Area2D" groups=["enemies"]]
 collision_layer = 3
 collision_mask = 2
+script = ExtResource("1_md0e3")
 metadata/_edit_horizontal_guides_ = [-72.0]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -23,3 +25,7 @@ texture = ExtResource("1_7p1mj")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_7p1mj")
+
+[node name="NavTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.5

@@ -53,7 +53,7 @@ _data = {
 &"rotate_360": SubResource("Animation_b60ip")
 }
 
-[node name="NetworkedPlayer" type="CharacterBody2D"]
+[node name="NetworkedPlayer" type="CharacterBody2D" groups=["players"]]
 script = ExtResource("1_jx0ca")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]

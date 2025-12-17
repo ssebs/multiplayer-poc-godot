@@ -7,7 +7,7 @@ var speed = 1000
 
 func _ready():
     timer.timeout.connect(on_timeout)
-    body_entered.connect(on_body_entered)
+    area_entered.connect(on_area_entered)
 
 #region movement
 func _physics_process(delta):
@@ -19,9 +19,10 @@ func shoot_bullet(dir: Vector2):
     timer.start()
 #endregion
 
-func on_body_entered(body: Node2D):
-    if body.is_in_group("enemies"):
-        body.queue_free()
+func on_area_entered(area: Area2D):
+    if area.is_in_group("enemies"):
+        area = area as Enemy
+        area.die()
 
 func on_timeout():
     queue_free()
