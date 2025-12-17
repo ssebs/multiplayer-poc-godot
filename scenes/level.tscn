@@ -52,3 +52,10 @@ offset_top = 418.0
 offset_right = 1056.0
 offset_bottom = 736.0
 color = Color(0.13333334, 0.13333334, 0.13333334, 1)
+
+[node name="EnemySpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("uid://d2htt6qyxx32m")
+spawn_path = NodePath("../Enemies")
+
+[node name="Enemies" type="Node2D" parent="."]
+position = Vector2(897, 127)

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhxaeqe0wna00"]
+
+[ext_resource type="Script" uid="uid://c3826a3ubnn2q" path="res://scripts/multiplayer_manager.gd" id="1_en7kx"]
+
+[node name="MultiplayerManager" type="Node"]
+script = ExtResource("1_en7kx")
+metadata/_custom_type_script = "uid://c3826a3ubnn2q"
+
+[node name="EnemySpawnTimer" type="Timer" parent="."]
+unique_name_in_owner = true

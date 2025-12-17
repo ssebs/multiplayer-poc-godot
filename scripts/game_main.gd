@@ -53,4 +53,8 @@ func start_game():
     add_child(level)
 
     multiplayer_manager.players_spawn_node = level.get_node("Players")
+    multiplayer_manager.enemies_spawn_node = level.get_node("Enemies")
+    
     multiplayer_manager.spawn_players()
+
+    multiplayer_manager.enemy_spawn_timer.start()

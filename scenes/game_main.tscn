@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://b81buv7fvr40m"]
 
 [ext_resource type="Script" uid="uid://t7wwipqjn52m" path="res://scripts/game_main.gd" id="1_57ec7"]
-[ext_resource type="Script" uid="uid://c3826a3ubnn2q" path="res://scripts/multiplayer_manager.gd" id="2_3qnxt"]
+[ext_resource type="PackedScene" uid="uid://dhxaeqe0wna00" path="res://scenes/multiplayer_manager.tscn" id="2_57ec7"]
 [ext_resource type="PackedScene" uid="uid://ckjyuvcx33v46" path="res://scenes/text_chat_ui.tscn" id="3_4qd86"]
 [ext_resource type="PackedScene" uid="uid://gqo7n3lmq61v" path="res://scenes/lobby_ui.tscn" id="4_cbeu7"]
 
@@ -17,11 +17,9 @@ theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 script = ExtResource("1_57ec7")
 
-[node name="MultiplayerManager" type="Node" parent="." node_paths=PackedStringArray("game_main")]
+[node name="MultiplayerManager" parent="." node_paths=PackedStringArray("game_main") instance=ExtResource("2_57ec7")]
 unique_name_in_owner = true
-script = ExtResource("2_3qnxt")
 game_main = NodePath("..")
-metadata/_custom_type_script = "uid://c3826a3ubnn2q"
 
 [node name="TextChatUI" parent="." instance=ExtResource("3_4qd86")]
 unique_name_in_owner = true
