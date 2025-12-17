@@ -31,7 +31,6 @@ func _update_line_to_mouse():
 @rpc("call_local")
 func die():
     print("Die called")
-    # TODO: respawn
     queue_free()
 
 # Server must call this from input_synchronizer

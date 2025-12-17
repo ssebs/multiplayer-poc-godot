@@ -62,6 +62,7 @@ func _spawn_player(id: int):
 
     var player_to_add = player_scene.instantiate() as NetworkedPlayer
     player_to_add.name = str(id)
+    player_to_add.tree_exiting.connect(_on_player_died.bind(id))
 
     players_spawn_node.add_child(player_to_add, true)
     # Add spawn offset
@@ -76,6 +77,12 @@ func _spawn_enemy():
     enemy_counter += 1
     enemies_spawn_node.add_child(enemy_to_add, true)
     enemy_to_add.position.x -= enemies_spawn_node.get_child_count() * (ENEMY_WIDTH + SPAWN_SPACING)
+
+func _on_player_died(id: int):
+    if multiplayer.is_server():
+        print("Player %s died, respawning in 2 seconds" % id)
+        await get_tree().create_timer(2.0).timeout
+        _spawn_player(id)
 
 func _on_peer_connected(id: int):
     print("Player %s connected" % id)
