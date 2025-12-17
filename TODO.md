@@ -7,6 +7,7 @@
 - [ ] Improve text chat
   - [ ] Make sure other input is disabled
 - [ ] Final code cleanup / comments
+- [ ] Remove MultiplayerSpawner node usage (all RPCs)
 
 ## Done
 - [ ] Add respawn

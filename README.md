@@ -17,8 +17,9 @@ See [TODO.md](./TODO.md) for progress.
 - Download the latest build in [releases](https://github.com/ssebs/multiplayer-poc-godot/releases)
   - NOTE: This may not be fully up-to-date, try using godot to compile the project yourself!
 
-## Screenshots/gifs
-![Multiplayer-POC-v0.1](./img/Multiplayer-POC-v0.1.gif)
+## Demo (gif)
+
+![Multiplayer-POC Gif](./img/Multiplayer-POC.gif)
 
 ## License
 [AGPL](./LICENSE)
