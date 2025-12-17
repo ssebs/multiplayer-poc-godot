@@ -28,6 +28,12 @@ func _update_line_to_mouse():
     var direction = (to_local(mouse_position)).angle()
     %Arrow.rotation = direction
 
+@rpc("call_local")
+func die():
+    print("Die called")
+    # TODO: respawn
+    queue_free()
+
 # Server must call this from input_synchronizer
 @rpc("call_local")
 func shoot_bullet(mouse_position: Vector2):

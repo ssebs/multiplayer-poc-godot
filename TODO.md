@@ -1,16 +1,16 @@
 ## In Progress
 
-- [ ] Add Enemy with dmg
 
 ## Up Next
 
 - [ ] Add respawn
+- [ ] Join mid-game
 - [ ] Improve text chat
   - [ ] Make sure other input is disabled
 - [ ] Final code cleanup / comments
 
 ## Done
-
+- [ ] Add Enemy with dmg
 - [ ] Create lobby / connection system
   - [ ] With connect/disconnect support msgs
 - [ ] Read https://docs.godotengine.org/en/stable/tutorials/networking/high_level_multiplayer.html#example-lobby-implementation

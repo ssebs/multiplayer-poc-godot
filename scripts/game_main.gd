@@ -54,7 +54,9 @@ func start_game():
 
     multiplayer_manager.players_spawn_node = level.get_node("Players")
     multiplayer_manager.enemies_spawn_node = level.get_node("Enemies")
-    
+
     multiplayer_manager.spawn_players()
 
-    multiplayer_manager.enemy_spawn_timer.start()
+    # Only server should start enemy spawning
+    if multiplayer.is_server():
+        multiplayer_manager.enemy_spawn_timer.start()

@@ -15,11 +15,14 @@ const PORT: int = 42069
 var players_spawn_node: Node2D
 var enemies_spawn_node: Node2D
 var lobby_players: Array[int] = []
+var enemy_counter: int = 0
 
 const SPAWN_SPACING := 10.0
 
 func _ready():
-    enemy_spawn_timer.timeout.connect(spawn_enemies)
+    # Only server spawns enemies
+    if multiplayer.is_server():
+        enemy_spawn_timer.timeout.connect(spawn_enemies)
 
 #region externally callable funcs
 func start_server():
@@ -69,8 +72,10 @@ func _spawn_enemy():
     print("Spawning enemy")
     const ENEMY_WIDTH = 68.0
     var enemy_to_add = enemy_scene.instantiate() as Enemy
+    enemy_to_add.name = "Enemy_%s" % enemy_counter
+    enemy_counter += 1
     enemies_spawn_node.add_child(enemy_to_add, true)
-    enemy_to_add.position.x -= enemies_spawn_node.get_child_count()  * (ENEMY_WIDTH + SPAWN_SPACING)
+    enemy_to_add.position.x -= enemies_spawn_node.get_child_count() * (ENEMY_WIDTH + SPAWN_SPACING)
 
 func _on_peer_connected(id: int):
     print("Player %s connected" % id)

@@ -1,31 +1,44 @@
 class_name Enemy extends Area2D
 
-# TODO: find closes player & move twd them
-# on hit, do player dmg
 @onready var nav_timer: Timer = %NavTimer
 
 var move_target: Vector2 = Vector2.ZERO
-var speed = 1
+var speed = 100
 
 func _ready():
-    nav_timer.timeout.connect(nav_to_nearest_player)
-    nav_timer.start()
+    # Only run enemy logic on server
+    if multiplayer.is_server():
+        body_entered.connect(on_body_entered)
+        nav_timer.timeout.connect(nav_to_nearest_player)
+        nav_timer.start()
+#region navigation
+func _physics_process(delta):
+    if !multiplayer.is_server():
+        return
+
+    if move_target != Vector2.ZERO:
+        var direction = (move_target - global_position).normalized()
+        global_position += direction * speed * delta
 
 func nav_to_nearest_player():
     var closest_player = _get_closest_player_or_null()
     if closest_player == null:
         printerr("Can't nav to closest player since they're null")
+        queue_free()
         return
     move_target = closest_player.global_position
+#endregion
 
 func die():
     print("owie")
     queue_free()
 
-func _physics_process(delta):
-    if move_target != Vector2.ZERO:
-        print("move_target: %s" % move_target)
-        global_position += move_target * speed * delta
+func on_body_entered(body: Node2D):
+    if body.is_in_group("players"):
+        body = body as NetworkedPlayer
+        print("Hitting player %s" % body.name)
+        if multiplayer.is_server():
+            body.die.rpc()
 
 
 func _get_closest_player_or_null() -> NetworkedPlayer:
