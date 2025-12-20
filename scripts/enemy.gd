@@ -11,6 +11,7 @@ func _ready():
         body_entered.connect(on_body_entered)
         nav_timer.timeout.connect(nav_to_nearest_player)
         nav_timer.start()
+
 #region navigation
 func _physics_process(delta):
     if !multiplayer.is_server():
@@ -30,7 +31,7 @@ func nav_to_nearest_player():
 #endregion
 
 func die():
-    print("owie")
+    print("Enemy owie")
     queue_free()
 
 func on_body_entered(body: Node2D):

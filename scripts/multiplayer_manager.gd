@@ -24,7 +24,8 @@ func _ready():
     if multiplayer.is_server():
         enemy_spawn_timer.timeout.connect(spawn_enemies)
 
-#region externally callable funcs
+#region Public API
+## Starts the ENet server and listens for connections.
 func start_server():
     var peer = ENetMultiplayerPeer.new()
     peer.create_server(PORT)
@@ -35,12 +36,14 @@ func start_server():
 
     _on_peer_connected(1)
 
+## Connects to a server at the given IP.
 func connect_client(ip_addr: String = "127.0.0.1"):
     var peer = ENetMultiplayerPeer.new()
     peer.create_client(ip_addr, PORT)
     multiplayer.multiplayer_peer = peer
     multiplayer.server_disconnected.connect(_on_server_disconnected)
 
+## Spawns all lobby players. Called when game starts.
 func spawn_players():
     if players_spawn_node == null:
         printerr("players_spawn_node == null")
@@ -48,6 +51,8 @@ func spawn_players():
 
     for p in lobby_players:
         _spawn_player(p)
+
+## Spawns an enemy if below max count (3). Server-only.
 func spawn_enemies():
     if enemies_spawn_node == null:
         printerr("enemies_spawn_node == null")
@@ -56,6 +61,7 @@ func spawn_enemies():
         _spawn_enemy()
 #endregion
 
+#region Spawning
 func _spawn_player(id: int):
     print("Spawning Player: %s" % id)
     const PLAYER_WIDTH := 66.0
@@ -77,7 +83,9 @@ func _spawn_enemy():
     enemy_counter += 1
     enemies_spawn_node.add_child(enemy_to_add, true)
     enemy_to_add.position.x -= enemies_spawn_node.get_child_count() * (ENEMY_WIDTH + SPAWN_SPACING)
+#endregion
 
+#region Event Handlers
 func _on_player_died(id: int):
     if multiplayer.is_server():
         print("Player %s died, respawning in 2 seconds" % id)
@@ -101,3 +109,4 @@ func _on_server_disconnected():
     print("Disconnected from server")
     server_disconnected.emit()
     multiplayer.multiplayer_peer = null
+#endregion

@@ -1,6 +1,5 @@
 ## In Progress
 
-
 ## Up Next
 
 - [ ] Join mid-game
