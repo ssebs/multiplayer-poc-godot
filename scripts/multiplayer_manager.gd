@@ -61,7 +61,7 @@ func spawn_enemies():
         _spawn_enemy()
 #endregion
 
-#region Spawning
+#region Spawning (local)
 func _spawn_player(id: int):
     print("Spawning Player: %s" % id)
     const PLAYER_WIDTH := 66.0
